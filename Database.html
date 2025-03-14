@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Casos Especiales</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h1>Formulario de Casos Especiales</h1>
+    
+    <form id="casoForm">
+        <label>Nombres:</label>
+        <input type="text" id="nombres"><br>
+        
+        <label>Apellidos:</label>
+        <input type="text" id="apellidos"><br>
+        
+        <label>PPA (opcional):</label>
+        <input type="text" id="ppa"><br>
+        
+        <label>Número de registro:</label>
+        <input type="text" id="numeroRegistro"><br>
+        
+        <label>Número de carnet:</label>
+        <input type="text" id="numeroCarnet"><br>
+        
+        <label>Número de celular:</label>
+        <input type="text" id="numeroCelular"><br>
+        
+        <label>Carrera:</label>
+        <select id="carrera">
+            <option value="Ing. Sistemas">Ingeniería en Sistemas</option>
+            <!-- Otras opciones -->
+        </select><br>
+        
+        <label>Director de carrera:</label>
+        <input type="text" id="directorCarrera"><br>
+
+        <button type="button" onclick="generarPDF()">Guardar</button>
+    </form>
+
+    <script>
+        async function generarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text(`Nombres: ${document.getElementById('nombres').value}`, 10, 10);
+            doc.text(`Apellidos: ${document.getElementById('apellidos').value}`, 10, 20);
+            doc.text(`PPA: ${document.getElementById('ppa').value}`, 10, 30);
+            doc.text(`Número de Registro: ${document.getElementById('numeroRegistro').value}`, 10, 40);
+            doc.text(`Número de Carnet: ${document.getElementById('numeroCarnet').value}`, 10, 50);
+            doc.text(`Número de Celular: ${document.getElementById('numeroCelular').value}`, 10, 60);
+            doc.text(`Carrera: ${document.getElementById('carrera').value}`, 10, 70);
+            doc.text(`Director de Carrera: ${document.getElementById('directorCarrera').value}`, 10, 80);
+
+            doc.save('carta_casos_especiales.pdf');
+        }
+    </script>
+</body>
+</html>
